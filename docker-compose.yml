@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  backend:
+    build: './backend'
+    container_name: 'backend'
+    restart: 'always'
+    # command: mkdir /backend
+    # volumes:
+    #   - ./backend:/app
+    ports:
+      - 8000:8000
+
+# volumes:
+#   backend:
+#     name: backend
+#     driver: local
+#     driver_opts:
+#       type: none
+#       device: /backend
+#       o: bind
