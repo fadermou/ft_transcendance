@@ -5,5 +5,5 @@ WORKDIR /app
 RUN pip3 install django
 COPY ./backend /app/
 WORKDIR /app/
-CMD ["python", "/app/backend/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 # CMD ["tail", "-f"]
