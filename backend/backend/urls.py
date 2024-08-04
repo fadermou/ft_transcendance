@@ -21,4 +21,5 @@ from back_end.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
+    # path('', js),
 ]

@@ -1,9 +1,15 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 
 def homepage(request):
-    return render(request, 'home.html')
+    data = { 
+        'name': 'Ferdaous',
+        'age': 20,
+        'city': 'Marrakech'
 
+    }
+    return render(request, 'home.html', context=data)
 
-# def homepage(request):
-#     return render(request, 'home.html')
-# Create your views here.
+# def js(request):
+#     return render(request, 'Node.js')
+
