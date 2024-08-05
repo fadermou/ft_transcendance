@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'back_end',
 ]
 
+# AUTH_USER_MODEL = ['backend.USER',]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

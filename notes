@@ -1,0 +1,34 @@
+in home.html this is how we print data (we named it item) that we gave its value in views.py
+________________________________________________________________________
+|   <!DOCTYPE html>
+|   <html>
+|   <head>
+|       <title>My Page</title>
+|   </head>
+|   <body>
+|       <h1>Data from Backend</h1>
+|       <ul>
+|       {% for item in data %}
+|           <li>{{ item }}</li>
+|       {% endfor %}
+|       </ul>
+|   </body>
+|   </html>
+|________________________________________________________________________
+
+
+this is our views.py
+________________________________________________________________________
+|   from django.shortcuts import render
+|   from django.http import JsonResponse
+|   
+|   def homepage(request):
+|       data = { 
+|           'name': 'Ferdaous',
+|           'age': 20,
+|           'city': 'Marrakech'
+|   
+|       }
+|       return render(request, 'home.html', context={'data': data})
+|       # return render(request, 'home.html', context=data)
+|________________________________________________________________________
