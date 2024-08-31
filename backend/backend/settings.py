@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-oi^nt!zl!bid@qm7_yu03n4axb#&wrvr!v7(4s&3t=@hlbn97i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'back_end',
+    'allauth',
+    'allauth.account',
+    # #Optional -- requires install using `django-allauth[socialaccount]`.
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 
@@ -50,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
+
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -124,3 +133,27 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+# 602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com
+# 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

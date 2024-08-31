@@ -10,11 +10,11 @@ def homepage(request):
         user1 = models.USER(username="ferdaous", gender="F", age=20, email="hhhh")
         user.save()
         user1.save()
-    data = { 
+    data = {
         'name': 'Ferdaous',
         'age': 20,
-        'city': 'Marrakech'
-
+        'city': 'Marrakech',
+        'password' : '123'
     }
     return render(request, 'home.html', context={'data': data})
     # return render(request, 'home.html', context=data)
