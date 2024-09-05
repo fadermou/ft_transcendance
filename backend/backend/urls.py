@@ -23,8 +23,10 @@ from back_end.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
-    path("accounts/", include('django.contrib.auth.urls')), #for /accounts/login
+    # path("accounts/", include('django.contrib.auth.urls')), #for /accounts/login
     path('accounts/', include('allauth.urls')),
+    path('social-auth/', include('social_django.urls', namespace='social')),
+
     # path('login/', login),
     # path('', js),
 ]

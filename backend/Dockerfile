@@ -2,7 +2,10 @@ FROM python:3.8
 
 WORKDIR /app
 
-RUN apt update ; pip3 install django
+RUN apt update ; pip3 install django ; pip install all ; pip install django-allauth ; pip install requests ;pip install --upgrade pip ;pip install PyJWT ; pip install cryptography \
+pip install social-auth-app-django
+
+
 COPY ./backend /app/
 WORKDIR /app/
 

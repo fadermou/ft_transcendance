@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
+    'social_django',
 
 ]
 
@@ -140,6 +141,7 @@ AUTHENTICATION_BACKENDS = [
 
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.google.GoogleOpenIdConnect', 
 ]
 
 
@@ -155,5 +157,8 @@ SOCIALACCOUNT_PROVIDERS = {
         'OAUTH_PKCE_ENABLED': True,
     }
 }
-# 602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com
+SOCIAL_AUTH_URL_NAMESPACE = 'social-auth'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+#602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com
 # 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

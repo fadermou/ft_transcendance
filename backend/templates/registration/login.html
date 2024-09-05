@@ -1,43 +1,18 @@
+<!-- templates/registration/login.html -->
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Login</title>
+</head>
 <body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-<p>Welcome, {{ data.name|escapejs }}!</p>
-<form id="loginForm">
-  <input id="username" type="text" placeholder="Username">
-  <input id="password" type="password" placeholder="Password">
-  <button type="submit">Submit</button>
-</form>
-
-<script type="text/javascript">
-  let loginForm = document.getElementById("loginForm");
-  let expectedUsername = "{{ data.name|escapejs }}";
-  expectedUsername = 'f';
-
-  loginForm.addEventListener("submit", (e) => {
-    console.log("hello");
-    e.preventDefault();
-    let username = document.getElementById("username");
-    let password = document.getElementById("password");
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log in</button>
+    </form>
     
-    console.log(`This form has a username of ${expectedUsername.value}`);
-
-    // if (username.value == "" || password.value == "") 
-    //   alert("Ensure you input a value in both fields!");
-    // // } else {
-    //  else if  (username.value ==  "{{ data.name }}" && password.value == "{{ data.password }}") {
-    //   console.log(
-    //     `This form has a username of ${username.value} and password of ${password.value}`
-    //     );
-    //     // alert("This form has been successfully submitted!");
-    //     }
-
-
-      // console.log(username , password);
-  });
-</script>
-
+    <!-- Google login button -->
+    <a href="{% url 'social:begin' 'google' %}">Login with Google</a>
 </body>
 </html>
