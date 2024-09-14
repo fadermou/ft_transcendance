@@ -19,6 +19,9 @@ def homepage(request):
     return render(request, 'home.html', context={'data': data})
     # return render(request, 'home.html', context=data)
 
+def opening(request):
+        return render(request, 'test_first_page.html')
+
 # def loginpage(request):
 #     form = AuthenticationForm(request, data=request.POST or None)
 #     next_url = request.GET.get('next', '')

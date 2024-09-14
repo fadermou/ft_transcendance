@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 
 # Quick-start development settings - unsuitable for production
@@ -93,6 +98,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'mypassword',
+#         'HOST': 'my-postgres',
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -128,7 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '../static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -162,3 +177,5 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 #602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com
 # 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
+
+##pip install psycopg2

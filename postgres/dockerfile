@@ -1,0 +1,5 @@
+FROM postgres:latest
+
+# RUN --name my-postgres -e POSTGRES_PASSWORD=mypassword -d postgres
+
+CMD ["tail" , "-f"]
