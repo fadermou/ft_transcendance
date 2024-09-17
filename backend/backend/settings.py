@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,6 +21,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+LOGIN_REDIRECT_URL = '/'  # Redirect users after login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -32,6 +35,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Application definition
 INSTALLED_APPS = [
@@ -43,14 +47,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'back_end',
     'allauth',
+    "rest_framework",
+    "rest_framework.authtoken",
+     'rest_framework_simplejwt',
     'allauth.account',
     # #Optional -- requires install using `django-allauth[socialaccount]`.
     'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.google',
     'social_django',
+    "dj_rest_auth",
+    'django.contrib.sites',
 
 ]
+SITE_ID = 1
 
 
 # AUTH_USER_MODEL = ['backend.USER',]
@@ -91,23 +101,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '123',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -143,8 +153,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '../static/'
+STATIC_URL = 'static/'
 
+REST_USE_JWT = True 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -156,25 +167,26 @@ AUTHENTICATION_BACKENDS = [
 
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
-    'social_core.backends.google.GoogleOpenIdConnect', 
+    # 'social_core.backends.google.GoogleOpenIdConnect', 
+        # 'social_core.backends.google.GoogleOAuth2',
+        'social_core.backends.github.GithubOAuth2',
+
 ]
-
-
+GITHUB_CALLBACK_URL = "http://127.0.0.1:8000/callback"
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-        'OAUTH_PKCE_ENABLED': True,
+    "github": {
+        "APP": {
+            "client_id": "Ov23lin6cXmhFd6zzMXw",
+            "secret": "c00ccbcc0f7f110a29eec96ed157a6ef867d9a4c",
+            "key": "",
+            "redirect_uri": "http://localhost:8000/accounts/github/login/callback/",
+        }
     }
 }
-SOCIAL_AUTH_URL_NAMESPACE = 'social-auth'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+# SOCIAL_AUTH_URL_NAMESPACE = 'social-auth'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 #602931963261-1a1ho6hbj12uhgqm1pmkio56g218erlu.apps.googleusercontent.com
 # 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
 

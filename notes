@@ -32,3 +32,6 @@ ________________________________________________________________________
 |       return render(request, 'home.html', context={'data': data})
 |       # return render(request, 'home.html', context=data)
 |________________________________________________________________________
+
+
+--> REST API endpoints

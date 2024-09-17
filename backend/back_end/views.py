@@ -3,6 +3,16 @@ from django.http import JsonResponse
 from django.contrib.auth.forms import AuthenticationForm
 from . import models
 
+from allauth.socialaccount.providers.github.views import GitHubOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from dj_rest_auth.registration.views import SocialLoginView
+
+class GitHubLogin(SocialLoginView):
+    adapter_class = GitHubOAuth2Adapter
+    callback_url = "http://127.0.0.1:8000/callback"
+    client_class = OAuth2Client
+
+
 def homepage(request):
     if (models.USER.objects.all().count() < 2):
         user0 = AuthenticationForm.username
@@ -21,6 +31,9 @@ def homepage(request):
 
 def opening(request):
         return render(request, 'test_first_page.html')
+
+def sign_up(request):
+        return render(request, 'test_first_page2.html')
 
 # def loginpage(request):
 #     form = AuthenticationForm(request, data=request.POST or None)

@@ -19,14 +19,19 @@ from django.contrib import admin
 from django.urls import path, include
 from back_end.views import *
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage),
+    # path('', homepage),
     # path("accounts/", include('django.contrib.auth.urls')), #for /accounts/login
     path('accounts/', include('allauth.urls')),
-    path('social-auth/', include('social_django.urls', namespace='social')),
-    path('l', opening),
+    path('auth/', include('social_django.urls', namespace='social')),
+
+    path('', opening),
+    path('sign_up', sign_up),
+
+    path('github/', GitHubLogin.as_view(), name='github_login'),
+
+    path('accounts/', include('django.contrib.auth.urls')),  # For built-in authentication views (optional)
     # path('login/', login),
     # path('', js),
 ]
