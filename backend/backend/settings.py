@@ -39,31 +39,55 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Application definition
 INSTALLED_APPS = [
+    
+    # # 'django.contrib.flatpages',
+    # 'django.contrib.admin',
+    # 'django.contrib.auth',
+    # 'django.contrib.contenttypes',
+    # 'django.contrib.sessions',
+    # 'django.contrib.messages',
+    # 'django.contrib.staticfiles',
+    # 'back_end',
+    # "rest_framework",
+    # "rest_framework.authtoken",
+    #  'rest_framework_simplejwt',
+    # # #Optional -- requires install using `django-allauth[socialaccount]`.
+    # # 'allauth.socialaccount.providers.google',
+    # 'social_django',
+    # "dj_rest_auth",
+
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.github',
+
+
+
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'back_end',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+    'dj_rest_auth',
     'allauth',
-    "rest_framework",
-    "rest_framework.authtoken",
-     'rest_framework_simplejwt',
     'allauth.account',
-    # #Optional -- requires install using `django-allauth[socialaccount]`.
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    # 'allauth.socialaccount.providers.google',
-    'social_django',
-    "dj_rest_auth",
-    'django.contrib.sites',
-
 ]
 SITE_ID = 1
 
 
 # AUTH_USER_MODEL = ['backend.USER',]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -169,9 +193,10 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     # 'social_core.backends.google.GoogleOpenIdConnect', 
         # 'social_core.backends.google.GoogleOAuth2',
-        'social_core.backends.github.GithubOAuth2',
+        # 'social_core.backends.github.GithubOAuth2',
 
 ]
+
 GITHUB_CALLBACK_URL = "http://127.0.0.1:8000/callback"
 SOCIALACCOUNT_PROVIDERS = {
     "github": {

@@ -24,7 +24,7 @@ urlpatterns = [
     # path('', homepage),
     # path("accounts/", include('django.contrib.auth.urls')), #for /accounts/login
     path('accounts/', include('allauth.urls')),
-    path('auth/', include('social_django.urls', namespace='social')),
+    # path('auth/', include('social_django.urls', namespace='social')),
 
     path('', opening),
     path('sign_up', sign_up),
