@@ -202,7 +202,7 @@ SOCIALACCOUNT_PROVIDERS = {
     "github": {
         "APP": {
             "client_id": "Ov23lin6cXmhFd6zzMXw",
-            "secret": "c00ccbcc0f7f110a29eec96ed157a6ef867d9a4c",
+            "secret": "1364a6dff7edc63f327b2ffd32bcbec503c5e644",
             "key": "",
             "redirect_uri": "http://localhost:8000/accounts/github/login/callback/",
         }

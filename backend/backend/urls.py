@@ -25,11 +25,11 @@ urlpatterns = [
     # path("accounts/", include('django.contrib.auth.urls')), #for /accounts/login
     path('accounts/', include('allauth.urls')),
     # path('auth/', include('social_django.urls', namespace='social')),
-
+# path('auth/github/', lambda request: redirect('socialaccount_login', provider='github')),
     path('', opening),
     path('sign_up', sign_up),
 
-    path('github/', GitHubLogin.as_view(), name='github_login'),
+    path('github/', GitHubLogin.as_view(), name='github_login'), ##
 
     path('accounts/', include('django.contrib.auth.urls')),  # For built-in authentication views (optional)
     # path('login/', login),
