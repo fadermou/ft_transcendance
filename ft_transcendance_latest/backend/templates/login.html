@@ -1,0 +1,8 @@
+<button id="intra42-login-btn">Login with 42 Intra</button>
+
+<script>
+    document.getElementById('intra42-login-btn').addEventListener('click', function() {
+        const intra42LoginUrl = "{% url 'intra42_login' %}";
+        window.location.href = intra42LoginUrl;
+    });
+</script>
