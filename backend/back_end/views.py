@@ -1,51 +1,54 @@
 from django.shortcuts import render
-from django.http import JsonResponse
-from django.contrib.auth.forms import AuthenticationForm
-from . import models
-
-from allauth.socialaccount.providers.github.views import GitHubOAuth2Adapter
+import requests
+from allauth.socialaccount.providers.oauth2.views import OAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+# from allauth.socialaccount.views import SocialLoginView
 from dj_rest_auth.registration.views import SocialLoginView
+from django.conf import settings
+from dj_rest_auth.registration.views import APIView
+from rest_framework.response import Response
 
-class GitHubLogin(SocialLoginView):
-    adapter_class = GitHubOAuth2Adapter
-    callback_url = "http://127.0.0.1:8000/callback"
+# from dj_rest_auth.views import SocialLoginView
+
+
+class Intra42OAuth2Adapter(OAuth2Adapter):
+    provider_id = '42intra'
+    access_token_url = 'https://api.intra.42.fr/oauth/token'
+    authorize_url = 'https://api.intra.42.fr/oauth/authorize'
+    profile_url = 'https://api.intra.42.fr/v2/me'  # To get user info after login
+
+#     def complete_login(self, request, app, token, **kwargs):
+#         extra_data = self.get_provider().sociallogin_from_response(
+#             request, token
+#         )
+#         return extra_data
+
+class Intra42Login(SocialLoginView):
+    adapter_class = Intra42OAuth2Adapter
     client_class = OAuth2Client
-
-
-def homepage(request):
-    if (models.USER.objects.all().count() < 2):
-        user0 = AuthenticationForm.username
-        user = models.USER(username="hajar", gender="F", age=20, email="salam")
-        user1 = models.USER(username="ferdaous", gender="F", age=20, email="hhhh")
-        user.save()
-        user1.save()
-    data = {
-        'name': 'Ferdaous',
-        'age': 20,
-        'city': 'Marrakech',
-        'password' : '123'
-    }
-    return render(request, 'home.html', context={'data': data})
-    # return render(request, 'home.html', context=data)
-
-def opening(request):
-        return render(request, 'test_first_page.html')
+    callback_url = settings.REDIRECT_URI
 
 def sign_up(request):
-        return render(request, 'test_first_page2.html')
+        return render(request, 'login.html')
 
-# def loginpage(request):
-#     form = AuthenticationForm(request, data=request.POST or None)
-#     next_url = request.GET.get('next', '')
-    
-#     if form.is_valid():
-#         # Perform login logic
-#         return redirect(next_url or '/')
-
-#     return render(request, 'login.html', {'form': form, 'next': next_url})
-
-# def js(request):
-#     return render(request, 'Node.js')
-
-
+class callback_view(APIView):
+    def get(self, request):
+        code = request.query_params.get('code')
+        print("Authorization Code:", code)
+        if not code:
+            return Response({"error": "Authorization code not provided"}, status=400)
+        token_url = 'https://api.intra.42.fr/oauth/token'
+        data = {
+            'grant_type': 'authorization_code',
+            'client_id': settings.FORTY_TWO_CLIENT_ID,
+            'client_secret': settings.FORTY_TWO_CLIENT_SECRET,
+            'code': code,
+            'redirect_uri': settings.REDIRECT_URI,
+        }
+        response = requests.post(token_url, data=data)
+        print("response", response.content)
+        if response.status_code != 200:
+            return Response({"error": "Failed to obtain access token"}, status=response.status_code)
+        access_token = response.json().get('access_token')
+        return Response({"access_token": access_token})
+# Create your views here.

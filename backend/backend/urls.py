@@ -14,25 +14,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path , include
 from back_end.views import *
+from back_end.views import Intra42Login  # Make sure this is the correct import path
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', homepage),
-    # path("accounts/", include('django.contrib.auth.urls')), #for /accounts/login
-    path('accounts/', include('allauth.urls')),
-    path('auth/', include('social_django.urls', namespace='social')),
-# path('auth/github/', lambda request: redirect('socialaccount_login', provider='github')),
-    path('', opening),
-    path('sign_up', sign_up),
+    path('', sign_up),
 
-    path('auth/github/', GitHubLogin.as_view(), name='github_login'), ##
+    path('accounts/', include('allauth.urls')),  # Include all allauth URLs
+    path('accounts/42intra/login/', Intra42Login.as_view(), name='intra42_login'),
+    path('accounts/42intra/login/callback/', callback_view.as_view(), name='intra42_callback'),  # Add this line
 
-    path('accounts/', include('django.contrib.auth.urls')),  # For built-in authentication views (optional)
-    # path('login/', login),
-    # path('', js),
+
+    # path('auth/social/42intra/register/', RegisterTokenView.as_view(), name='intra42_register'),
+    # path('auth/social/42intra/redirect/', RedirectToIntra42.as_view(), name='intra42_redirect'),
+
 ]
-
