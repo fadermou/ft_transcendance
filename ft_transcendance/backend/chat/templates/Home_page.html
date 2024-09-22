@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image with Centered Text</title>
+    <link rel="stylesheet" href="../static/Css/Home.css">
+    <link rel="icon" type = "image/png" href="../static/assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="gif-ping"></div>
+    <div>
+        <img src="../static/assets/images/logo.png" alt="Logo" class="logo"> 
+    </div>
+    <div class="Welcome">
+        <div class="mobile" mobile-url="{% url 'mobile_page' %}"></div>
+        <h1><span class="dynamic-h1">Welcome, {{ username }}</span></h1>
+        <h2><span class="dynamic-h2"></span></h2>
+        <div class="button-container" id="start" start-url="{% url 'game_page' %}">
+            <button id="button-container1">Let's Start</button>
+        </div>
+        <div class="button-Home" id="home" home-url="{% url 'home_page' %}">
+            <button>Home</button>
+        </div>
+        <div class="button-Profile" id="profile">
+            <button>Profile</button>
+        </div>
+        <div class="button-Game" id="game" game-url="{% url 'game_page' %}">
+            <button>Game</button>
+        </div>
+        <div class="button-Tournoi" id="tournoi" tournoi-url="{% url 'tournoi_page' %}">
+            <button>Tournoi</button>
+        </div>
+        <div class="button-Chat" id="chat" chat-url="{% url 'chat' username=username %}">
+            <button>Chat</button>
+        </div>
+    <div class="button-Settings" id="settings" setting-url="{% url 'setting_page' %}">
+        <button>Settings</button>
+    </div>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="../static/JS/home.js"></script>
+    
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image with Centered Text</title>
+    <link rel="stylesheet" href="../static/Css/data_page.css">
+    <link rel="icon" type = "image/png" href="../static/assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="rectangle"></div>
+    <div class="circle">
+        <img src="../static/assets/images/fouaouri.jpeg" alt="Your Image">
+    </div>
+    <div>
+        <img src="../static/assets/images/logo.png" alt="Logo" class="logo"> 
+    </div>
+    <div class="Welcome">
+        <h1>WELCOME !</h1>
+    </div>
+    <div class="name">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ username }}" required> 
+    </div>
+
+    <div class="Mail">
+        <label for="mail">Mail:</label>
+        <input type="email" id="mail" name="mail" value="{{ email }}" required> 
+    </div>
+    
+    <div class="button-container" id="clickme">
+        <button>Start</button>
+    </div>
+    <script>
+        document.getElementById('clickme').addEventListener('click', function() {
+            window.location.href = '{% url "home_page" %}'; 
+        });
+    </script>
+</body>
+</html>
+

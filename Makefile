@@ -11,4 +11,4 @@ re : clean all
 push:
 	git add . 
 	git commit -m "push"
-	git push
+	git push -u origin test
