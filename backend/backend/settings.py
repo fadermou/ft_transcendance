@@ -62,6 +62,7 @@ FORTY_TWO_CLIENT_SECRET = 's-s4t2ud-a575999bb5eab9f798c3d2b04a295ba27f3736cc1398
 REDIRECT_URI = 'http://localhost:8000/accounts/42intra/login/callback/'  # Change this to match your endpoint
 
 
+
 SOCIALACCOUNT_PROVIDERS = {
     '42intra': {
         'APP': {

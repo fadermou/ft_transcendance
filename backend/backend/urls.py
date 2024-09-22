@@ -23,11 +23,13 @@ from back_end.views import Intra42Login  # Make sure this is the correct import 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', sign_up),
+    path('home/', home),
 
     path('accounts/', include('allauth.urls')),  # Include all allauth URLs
     path('accounts/42intra/login/', Intra42Login.as_view(), name='intra42_login'),
     path('accounts/42intra/login/callback/', callback_view.as_view(), name='intra42_callback'),  # Add this line
-
+    # path('/accounts/42intra/users', call)
+    # path
 
     # path('auth/social/42intra/register/', RegisterTokenView.as_view(), name='intra42_register'),
     # path('auth/social/42intra/redirect/', RedirectToIntra42.as_view(), name='intra42_redirect'),
