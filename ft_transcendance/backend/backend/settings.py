@@ -33,7 +33,7 @@ SITE_ID = 1
 
 INSTALLED_APPS = [
     "dj_rest_auth",
-
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,8 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'back_end',
+    'channels',
     'chat',
-
+    
     # Allauth apps
     'allauth',
     'allauth.account',
@@ -56,12 +57,21 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
 
 ]
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
 FORTY_TWO_CLIENT_ID = 'u-s4t2ud-e5437d72a82b82ecee1a09bda3d32caf037304254c571cacb12bc31aed110266'
 
 FORTY_TWO_CLIENT_SECRET = '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'
 
 REDIRECT_URI = 'http://localhost:8000/accounts/42intra/login/callback/'  # Change this to match your endpoint
-# REDIRECT_URI = 'http://localhost:8000/home'  # Change this to match your endpoint
 
 
 
@@ -112,6 +122,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+ASGI_APPLICATION = 'backend.asgi.application'
+
 
 
 # Database
@@ -155,9 +167,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

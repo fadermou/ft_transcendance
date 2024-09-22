@@ -23,8 +23,8 @@ from chat.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', sign_up),
-    path('home/', home),
 
+    path('', include('chat.urls')),
     path('accounts/', include('allauth.urls')),  # Include all allauth URLs
     path('accounts/42intra/login/', Intra42Login.as_view(), name='intra42_login'),
     path('accounts/42intra/login/callback/', callback_view.as_view(), name='intra42_callback'),  # Add this line
