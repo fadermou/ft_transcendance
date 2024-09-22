@@ -60,6 +60,7 @@ FORTY_TWO_CLIENT_ID = 'u-s4t2ud-e5437d72a82b82ecee1a09bda3d32caf037304254c571cac
 FORTY_TWO_CLIENT_SECRET = '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'
 
 REDIRECT_URI = 'http://localhost:8000/accounts/42intra/login/callback/'  # Change this to match your endpoint
+# REDIRECT_URI = 'http://localhost:8000/home'  # Change this to match your endpoint
 
 
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render ,redirect
-import requests , json
+import requests , json, os
 from allauth.socialaccount.providers.oauth2.views import OAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 # from allauth.socialaccount.views import SocialLoginView
@@ -88,6 +88,7 @@ class callback_view(APIView):
 
         if user_response.status_code != 200:
             return Response({"error": "Failed to fetch user data"}, status=user_response.status_code)
+        redirect('home/')
 
         user_data = user_response.json()
 
@@ -98,7 +99,9 @@ class callback_view(APIView):
             'first_name': user_data.get('first_name'),
             'last_name': user_data.get('last_name'),
         }
+        json_file_path = os.path.join(settings.BASE_DIR, 'user_data.json')  # Adjust path as needed
+        with open(json_file_path, 'w') as json_file:
+            json.dump(user_data, json_file)
         # print(processed_data)
-        redirect('home/')
-        return JsonResponse({"user_data": user_response.json()})
+        return redirect('/home/')
         # return Response(user_response.json())
