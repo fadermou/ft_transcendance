@@ -4,11 +4,11 @@ services:
 
   backend:
     image: 'backend'
-    build: './backend'
+    build: 'ft_transcendance/backend'
     container_name: 'backend'
     restart: 'always'
     volumes:
-      - ./backend:/app
+      - ./ft_transcendance:/app
     ports:
       - 8000:8000
 

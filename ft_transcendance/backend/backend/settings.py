@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'back_end',
+    'chat',
 
     # Allauth apps
     'allauth',

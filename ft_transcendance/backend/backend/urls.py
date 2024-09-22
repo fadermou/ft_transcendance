@@ -17,12 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from back_end.views import *
-from back_end.views import Intra42Login  # Make sure this is the correct import path
+from chat.views import *
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', sign_up),
+    # path('', sign_up),
     path('home/', home),
 
     path('accounts/', include('allauth.urls')),  # Include all allauth URLs
