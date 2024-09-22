@@ -7,9 +7,10 @@ from dj_rest_auth.registration.views import SocialLoginView
 from django.conf import settings
 from dj_rest_auth.registration.views import APIView
 from rest_framework.response import Response
+from django.db import models
+from django.contrib.auth.models import User
 
-# from dj_rest_auth.views import SocialLoginView
-
+from django.contrib.auth.models import User
 
 class Intra42OAuth2Adapter(OAuth2Adapter):
     provider_id = '42intra'
@@ -17,11 +18,6 @@ class Intra42OAuth2Adapter(OAuth2Adapter):
     authorize_url = 'https://api.intra.42.fr/oauth/authorize'
     profile_url = 'https://api.intra.42.fr/v2/me'  # To get user info after login
 
-#     def complete_login(self, request, app, token, **kwargs):
-#         extra_data = self.get_provider().sociallogin_from_response(
-#             request, token
-#         )
-#         return extra_data
 
 class Intra42Login(SocialLoginView):
     adapter_class = Intra42OAuth2Adapter

@@ -2,7 +2,7 @@
 
 <script>
     document.getElementById('intra42-login-btn').addEventListener('click', function() {
-        const intra42LoginUrl = "{% url 'intra42_login' %}";
+        const intra42LoginUrl = "https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-e5437d72a82b82ecee1a09bda3d32caf037304254c571cacb12bc31aed110266&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Faccounts%2F42intra%2Flogin%2Fcallback%2F&response_type=code";
         window.location.href = intra42LoginUrl;
     });
 </script>
