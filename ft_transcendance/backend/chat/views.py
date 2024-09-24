@@ -25,12 +25,12 @@ def first_page(request):
     return render(request, 'first_page.html')  
 
 def data_page(request):
-    if request.user.is_authenticated:
+    # if request.user.is_authenticated:
         username = request.user.username
         email = request.user.email  
         return render(request, 'data_page.html', {'username': username, 'email': email})
-    else:
-        return redirect('first_page')  
+    # else:
+    #     return redirect('first_page')  
  
 
 def home_page(request):
