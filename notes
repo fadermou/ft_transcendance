@@ -41,4 +41,5 @@ ________________________________________________________________________
    -> What It Is: The authorization code is a temporary code that the authorization server (e.g., 42 Intra) sends back to your application after the user successfully authorizes your app.
 
    -> Purpose: Its main purpose is to securely exchange it for an access token. It is short-lived and exists only to provide a secure way for your app to obtain an access token.
+   -> rest api / api
 _____________________________________

@@ -142,6 +142,7 @@ class callback_view(APIView):
 
 
         user_data = user_response.json()
+        json_file_path = os.path.join(settings.BASE_DIR, 'user_data.json')  # Adjust path as needed
 
         processed_data = {
             'id': user_data.get('id'),
@@ -151,7 +152,6 @@ class callback_view(APIView):
             'last_name': user_data.get('last_name'),
         }
         print("\n", processed_data, '\n')
-        json_file_path = os.path.join(settings.BASE_DIR, 'user_data.json')  # Adjust path as needed
         
         # Load existing data or initialize an empty list
         if os.path.exists(json_file_path):

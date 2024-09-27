@@ -27,7 +27,7 @@ def first_page(request):
 def data_page(request):
     # if request.user.is_authenticated:
         username = request.user.username
-        email = request.user.email  
+        # email = request.user.email  
         return render(request, 'data_page.html', {'username': username, 'email': email})
     # else:
     #     return redirect('first_page')  
