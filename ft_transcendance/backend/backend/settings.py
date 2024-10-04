@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'back_end',
     'channels',
     'chat',
-    
     # Allauth apps
     'allauth',
     'allauth.account',
@@ -89,6 +88,8 @@ SOCIALACCOUNT_PROVIDERS = {
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    # 'back_end.backends.NoPasswordBackend',
+
 ]
 
 MIDDLEWARE = [
@@ -140,14 +141,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'postgres': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'admin',
-        'PASSWORD': '123',
-        'HOST': 'db',  # Service name in docker-compose.yml
-        'PORT': '5432',
-    }
+    # 'postgres': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',
+    #     'USER': 'admin',
+    #     'PASSWORD': '123',
+    #     'HOST': 'db',  # Service name in docker-compose.yml
+    #     'PORT': '5432',
+    # }
 }
 
 

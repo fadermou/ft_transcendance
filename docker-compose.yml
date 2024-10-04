@@ -19,23 +19,23 @@ services:
 
 
 
-  postgres:
-    image: postgres
-    # image: postgres:15
-    volumes:
-      - ./ft_transcendance/postgres:/var/lib/postgresql/data
-    container_name: 'postgres'
-    networks:
-      - ft_transcendance
-    restart: always
-    # command: 'tail -f'
-    build: './ft_transcendance/postgres'
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: '123'
-    ports: 
-      - "5432:5432"
+  # postgres:
+  #   image: postgres
+  #   # image: postgres:15
+  #   volumes:
+  #     - ./ft_transcendance/postgres:/var/lib/postgresql/data
+  #   container_name: 'postgres'
+  #   networks:
+  #     - ft_transcendance
+  #   restart: always
+  #   # command: 'tail -f'
+  #   build: './ft_transcendance/postgres'
+  #   environment:
+  #     POSTGRES_DB: postgres
+  #     POSTGRES_USER: admin
+  #     POSTGRES_PASSWORD: '123'
+  #   ports: 
+  #     - "5432:5432"
 
 networks:
   ft_transcendance:
