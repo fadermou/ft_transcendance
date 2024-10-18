@@ -17,24 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from back_end.views import *
-from chat.views import *
-# from back_end.views import Home, check_login_status
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', sign_up),
-
-    # path('', include('chat.urls')),
-    # path('json/', jsonn),
-    path('', Home),
+    path('api/', include('back_end.api.urls')),
     path('accounts/', include('allauth.urls')),  # Include all allauth URLs
     path('accounts/42intra/login/', Intra42Login.as_view(), name='intra42_login'),
-    path('accounts/42intra/login/callback/', callback_view.as_view(), name='intra42_callback'),  # Add this line
-    # path('login/', check_login_status),
-    # path('/accounts/42intra/users', call)
-    # path
-
-    # path('auth/social/42intra/register/', RegisterTokenView.as_view(), name='intra42_register'),
-    # path('auth/social/42intra/redirect/', RedirectToIntra42.as_view(), name='intra42_redirect'),
+    path('accounts/42intra/login/callback/', callback_view.as_view(), name='intra42_callback'),
 ]

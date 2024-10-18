@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 
 services:
 
@@ -11,6 +11,29 @@ services:
       - ./ft_transcendance:/app
     ports:
       - 8000:8000
+    networks:
+      - ft_transcendance
+    depends_on:
+      - frontend
+
+  frontend:
+    image: 'frontend'
+    build: 'ft_transcendance/frontend'
+    container_name: 'frontend'
+    restart: 'always'
+    volumes:
+      - ./ft_transcendance:/app
+    ports:
+      - 8080:8080
+    networks:
+      - ft_transcendance
+
+
+networks:
+  ft_transcendance:
+    name: ft_transcendance
+    driver_opts:
+      type: bridge
 
     # depends_on:
     #   - postgres
@@ -36,9 +59,3 @@ services:
   #     POSTGRES_PASSWORD: '123'
   #   ports: 
   #     - "5432:5432"
-
-networks:
-  ft_transcendance:
-    name: ft_transcendance
-    driver_opts:
-      type: bridge

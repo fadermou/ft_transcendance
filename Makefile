@@ -9,6 +9,6 @@ fclean : clean
 re : clean all
 
 push:
-	git add . 
+	git add .
 	git commit -m "push"
-	git push 
+	git push

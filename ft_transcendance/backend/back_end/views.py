@@ -7,23 +7,20 @@ from dj_rest_auth.registration.views import SocialLoginView
 from django.conf import settings
 from dj_rest_auth.registration.views import APIView
 from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
-from django.http import JsonResponse , HttpResponse
+from django.http import JsonResponse , HttpResponse , HttpResponseRedirect
 import json
-
-def Home(request):
-    print(request.user.is_authenticated)
-    if request.user.is_authenticated:
-        return redirect ('/#homeContent')
-    return render(request, 'front.html')
-
+from django.contrib.auth.decorators import login_required
+from back_end.utils.save import save_and_login_user
 class Intra42OAuth2Adapter(OAuth2Adapter):
     provider_id = '42intra'
     access_token_url = 'https://api.intra.42.fr/oauth/token'
     authorize_url = 'https://api.intra.42.fr/oauth/authorize'
-    profile_url = 'https://api.intra.42.fr/v2/me' 
+    profile_url = 'https://api.intra.42.fr/v2/me'  # To get user info after login
 
 
 class Intra42Login(SocialLoginView):
@@ -31,11 +28,8 @@ class Intra42Login(SocialLoginView):
     client_class = OAuth2Client
     callback_url = settings.REDIRECT_URI
 
-def sign_up(request):
-        return render(request, 'login.html')
-
-
 class callback_view(APIView):
+
     def get(self, request):
         code = request.query_params.get('code')
         if not code:
@@ -66,61 +60,12 @@ class callback_view(APIView):
 
 
         user_data = user_response.json()
-        
-        username = user_data.get('login') 
 
-        user, created = User.objects.get_or_create(username=username)
-
-        if created:
-            user.email = user_data.get('email') 
-            user.save()
-
-        backend = 'social_core.backends.intra.IntraOAuth2'
-        login(request, user, backend=backend)
+        save_and_login_user(request, user_data)
+        # print(settings.FRONTEND_URL)
+        # FRONTEND_URL = "http://localhost:8080"
+        return HttpResponseRedirect(f'{settings.FRONTEND_URL}/?login_success=True')
 
 
-        json_file_path = os.path.join(settings.BASE_DIR, 'user_data.json')  
-        
 
-        if os.path.exists(json_file_path):
-            try:
-                with open(json_file_path, 'r') as json_file:
-                    existing_data = json.load(json_file)
-                    if not isinstance(existing_data, list):
-                        print("Warning: JSON root is not a list. Resetting to an empty list.")
-                        existing_data = []
-            except json.JSONDecodeError:
-                print("Error decoding JSON. Starting with empty list.")
-                existing_data = []
-        else:
-            existing_data = []
-
-        if not isinstance(user_data, dict):
-            print(f"Error: user_data is not a dictionary. Type: {type(user_data)}")
-            print(f"Content: {user_data}")
-            return 
-
-        user_id = user_data.get('id')
-        if user_id is None:
-            print("Error: User data does not contain 'id' field.")
-            return 
-
-        user_exists = False
-        for i, user in enumerate(existing_data):
-            if user.get('id') == user_id:
-                existing_data[i] = user_data  
-                user_exists = True
-                break
-
-        if not user_exists:
-            existing_data.append(user_data)
-
-        try:
-            with open(json_file_path, 'w') as json_file:
-                json.dump(existing_data, json_file, indent=2)
-            print(f"Successfully updated {json_file_path}")
-        except Exception as e:
-            print(f"Error writing to JSON file: {str(e)}")
-            return 
-
-        return redirect('/#HomeContent')
+# @login_required
