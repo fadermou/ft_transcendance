@@ -62,8 +62,6 @@ class callback_view(APIView):
         user_data = user_response.json()
 
         save_and_login_user(request, user_data)
-        # print(settings.FRONTEND_URL)
-        # FRONTEND_URL = "http://localhost:8080"
         return HttpResponseRedirect(f'{settings.FRONTEND_URL}/?login_success=True')
 
 
