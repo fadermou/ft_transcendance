@@ -135,7 +135,7 @@ function LoadContent(templateId){
         
         document.getElementById('intra42-login-btn').addEventListener('click', function() {
             // console.log(555);
-            const intra42LoginUrl = "https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-e5437d72a82b82ecee1a09bda3d32caf037304254c571cacb12bc31aed110266&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Faccounts%2F42intra%2Flogin%2Fcallback%2F&response_type=code";
+            const intra42LoginUrl = "https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-a0d438e24b0c9119435025d9a17ae929ed3e2c3be61964f9b3d0dffbd9d314c7&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Faccounts%2F42intra%2Flogin%2Fcallback%2F&response_type=code";
             window.location.href = intra42LoginUrl;
             templateId = 'dataContent';
         });

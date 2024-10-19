@@ -5,8 +5,10 @@ RUN apt update -y ; apt upgrade -y ; pip install django; pip install --upgrade p
 ; apt-get update && apt-get install -y postgresql-client
 
 WORKDIR /app/backend
+
 COPY requirements.txt /app/backend
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["tail", "-f"]
+# CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
