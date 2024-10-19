@@ -6,7 +6,7 @@ RUN apt update -y ; apt upgrade -y ; pip install django; pip install --upgrade p
 
 WORKDIR /app/backend
 COPY requirements.txt /app/backend
-COPY wait-for-postgres.sh /app/backend
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
