@@ -21,8 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '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'
-# SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = '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'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -65,11 +65,11 @@ INSTALLED_APPS = [
 #     },
 # }
 
-# FORTY_TWO_CLIENT_ID = 'u-s4t2ud-e5437d72a82b82ecee1a09bda3d32caf037304254c571cacb12bc31aed110266'
-FORTY_TWO_CLIENT_ID = 'u-s4t2ud-a0d438e24b0c9119435025d9a17ae929ed3e2c3be61964f9b3d0dffbd9d314c7'
+# FORTY_TWO_CLIENT_ID = 'u-s4t2ud-a0d438e24b0c9119435025d9a17ae929ed3e2c3be61964f9b3d0dffbd9d314c7'
+FORTY_TWO_CLIENT_ID = os.getenv('FORTY_TWO_CLIENT_ID')
 
-# FORTY_TWO_CLIENT_SECRET = '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'
-FORTY_TWO_CLIENT_SECRET = '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'
+# FORTY_TWO_CLIENT_SECRET = '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'
+FORTY_TWO_CLIENT_SECRET = os.getenv('FORTY_TWO_CLIENT_SECRET')
 
 REDIRECT_URI = 'http://localhost:8000/accounts/42intra/login/callback/'
 
@@ -139,12 +139,12 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.getenv('POSTGRES_DB'),
-        # 'USER': os.getenv('POSTGRES_USER'),
-        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'NAME': 'your_database_name',
-        'USER': 'your_database_user',
-        'PASSWORD': 'your_database_password',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        # 'NAME': 'your_database_name',
+        # 'USER': 'your_database_user',
+        # 'PASSWORD': 'your_database_password',
         'HOST': 'postgres',
         'PORT': '5432',  
     }
