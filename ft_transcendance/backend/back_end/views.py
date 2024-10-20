@@ -62,7 +62,6 @@ class callback_view(APIView):
         user_data = user_response.json()
 
         save_and_login_user(request, user_data)
-        print(os.getenv('SECRET_KEY'))
         return HttpResponseRedirect(f'{settings.FRONTEND_URL}/?login_success=True')
 
 

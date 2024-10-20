@@ -16,6 +16,7 @@ def getRoute(request):
 def check_login_status(request):
     print(request.session.items())
 
+    print (request.user)
     if request.user.is_authenticated:
         return JsonResponse({'isLoggedIn': True})
 
