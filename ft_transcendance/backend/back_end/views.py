@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from django.http import HttpResponseRedirect
 import json, requests
 from django.contrib.auth.decorators import login_required
-from back_end.utils.save import save_and_login_user, logout
+from back_end.utils.login_logout import save_and_login_user
 
 class Intra42OAuth2Adapter(OAuth2Adapter):
     provider_id = '42intra'

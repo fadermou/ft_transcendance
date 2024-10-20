@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from back_end.views import *
+from back_end.utils.login_logout import *
 
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),  # Include all allauth URLs
     path('accounts/42intra/login/', Intra42Login.as_view(), name='intra42_login'),
     path('accounts/42intra/login/callback/', callback_view.as_view(), name='intra42_callback'),
+    path('logout_/', logout_user)
 ]
