@@ -1,4 +1,4 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.conf import settings
@@ -8,6 +8,16 @@ def logout_user(request):
         logout(request)
         return JsonResponse({"message": "Successfully logged out"}, status=200)
     return JsonResponse({"error": "Invalid request method"}, status=400)
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+    if user is not None:
+        return JsonResponse({'isLoggedIn': True})
+    return JsonResponse({'isLoggedIn': False})
+
 
 def save_and_login_user(request, user_data):
     username = user_data.get('login')

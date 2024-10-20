@@ -26,5 +26,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),  # Include all allauth URLs
     path('accounts/42intra/login/', Intra42Login.as_view(), name='intra42_login'),
     path('accounts/42intra/login/callback/', callback_view.as_view(), name='intra42_callback'),
-    path('logout_/', logout_user)
+    path('logout/', logout_user),
+    path('login/', login_user),
 ]
