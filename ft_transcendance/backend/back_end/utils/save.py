@@ -1,6 +1,13 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.conf import settings
+
+def logout_user(request):
+    if request.method == "POST":
+        logout(request)
+        return JsonResponse({"message": "Successfully logged out"}, status=200)
+    return JsonResponse({"error": "Invalid request method"}, status=400)
 
 def save_and_login_user(request, user_data):
     username = user_data.get('login')

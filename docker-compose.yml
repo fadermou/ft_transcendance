@@ -18,7 +18,8 @@ services:
       - postgres
     env_file:
       - .env
-
+    command: >
+      bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
   frontend:
     image: 'frontend'
     build: 'ft_transcendance/frontend'

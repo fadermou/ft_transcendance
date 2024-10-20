@@ -15,20 +15,12 @@ def getRoute(request):
     return Response(routes)
 
 def check_login_status(request):
-    print(request.session.items())
-    user = User.objects.get(username='fadermou')
-
-    print('--------------')
-    print (user.username)
-    print('--------------')
     if request.user.is_authenticated:
         return JsonResponse({'isLoggedIn': True})
-
     return JsonResponse({'isLoggedIn': False})
 
 def user(request):
     # user = User.objects.get(username=request.user)
-
     return JsonResponse({'username': request.user.username,
                         'email':request.user.email})
 

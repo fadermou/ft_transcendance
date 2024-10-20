@@ -1,21 +1,15 @@
-from django.shortcuts import render ,redirect
-import requests , json, os
+
 from allauth.socialaccount.providers.oauth2.views import OAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-# from allauth.socialaccount.views import SocialLoginView
 from dj_rest_auth.registration.views import SocialLoginView
 from django.conf import settings
 from dj_rest_auth.registration.views import APIView
 from rest_framework.response import Response
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import IsAuthenticated
-from django.db import models
-from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
-from django.http import JsonResponse , HttpResponse , HttpResponseRedirect
-import json
+from django.http import HttpResponseRedirect
+import json, requests
 from django.contrib.auth.decorators import login_required
-from back_end.utils.save import save_and_login_user
+from back_end.utils.save import save_and_login_user, logout
+
 class Intra42OAuth2Adapter(OAuth2Adapter):
     provider_id = '42intra'
     access_token_url = 'https://api.intra.42.fr/oauth/token'
@@ -63,7 +57,6 @@ class callback_view(APIView):
 
         save_and_login_user(request, user_data)
         return HttpResponseRedirect(f'{settings.FRONTEND_URL}/?login_success=True')
-
 
 
 # @login_required
